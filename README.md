@@ -55,6 +55,7 @@ See [docs/choose-your-path.md](docs/choose-your-path.md).
 ## Repo Contents
 
 - `AGENTS.md`: instructions for AI coding agents.
+- `examples/minimal-oauth-service/`: a runnable hosting-neutral OAuth skeleton.
 - `docs/oauth-flow.md`: plain-English OAuth flow.
 - `docs/security-for-non-developers.md`: secret handling guide.
 - `docs/hosting-options.md`: hosting-neutral planning notes.
@@ -65,3 +66,22 @@ See [docs/choose-your-path.md](docs/choose-your-path.md).
 
 Before using an OAuth service with real customer data, validate your own scopes, token storage, encryption, hosting security, privacy requirements, logging, data retention, compliance, uninstall flow, and incident response.
 
+## Example Included
+
+The example is intentionally small and hosting-neutral:
+
+```text
+examples/minimal-oauth-service/
+```
+
+It includes:
+
+- `/oauth/start`
+- `/oauth/callback`
+- `/oauth/status`
+- `/oauth/revoke`
+- signed OAuth `state`
+- placeholder environment variables
+- in-memory token storage for learning only
+
+Before real users, replace the in-memory store with durable encrypted storage and review scopes, logs, revocation, uninstall behavior, and hosting security.
