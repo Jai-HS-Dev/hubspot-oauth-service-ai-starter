@@ -1,0 +1,20 @@
+name: Bug Report
+description: Report a problem with this starter.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I confirm this issue does not include API keys, OAuth secrets, tokens, portal IDs, customer data, or private screenshots.
+          required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Describe the problem without sharing private data.
+    validations:
+      required: true
+
