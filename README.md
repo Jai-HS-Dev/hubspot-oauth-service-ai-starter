@@ -162,3 +162,9 @@ OAuth still needs careful security:
 - `recipes/`: OAuth implementation plans.
 - `examples/`: runnable starter example.
 - `scripts/`: AI readiness and smoke checks.
+
+## License And Implementation Responsibility
+
+This starter uses the MIT license, which is a good fit for community learning, copying, remixing, and building. The license is permissive, but the generated app is still the builder's responsibility.
+
+Before using a tool with real HubSpot data, review `docs/implementation-responsibility.md`, `REAL_TOOL_CHECKLIST.md`, and `docs/non-developer-safety-gates.md`. Builders should verify their own HubSpot developer requirements, scopes, auth model, hosting setup, data/privacy obligations, and production readiness.

@@ -14,6 +14,7 @@ const requiredFiles = [
   'docs/hosting-options.md',
   'docs/developer-architecture.md',
   'docs/non-developer-safety-gates.md',
+  'docs/implementation-responsibility.md',
   'REAL_TOOL_CHECKLIST.md',
   '.github/prompts/choose-auth-and-hosting.prompt.md',
   '.github/prompts/security-review-before-deploy.prompt.md',
