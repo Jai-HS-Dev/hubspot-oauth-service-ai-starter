@@ -165,6 +165,9 @@ OAuth still needs careful security:
 
 ## License And Implementation Responsibility
 
-This starter uses the MIT license, which is a good fit for community learning, copying, remixing, and building. The license is permissive, but the generated app is still the builder's responsibility.
+This starter is released under the MIT license in `LICENSE`. That makes it permissive for learning, copying, modifying, publishing, distributing, sublicensing, and building real projects, as long as the required copyright and license notices are preserved when substantial portions are reused.
 
-Before using a tool with real HubSpot data, review `docs/implementation-responsibility.md`, `REAL_TOOL_CHECKLIST.md`, and `docs/non-developer-safety-gates.md`. Builders should verify their own HubSpot developer requirements, scopes, auth model, hosting setup, data/privacy obligations, and production readiness.
+The starter is provided as-is, without warranty or liability. It is not legal advice, a security audit, a compliance review, HubSpot approval, marketplace approval, or a production guarantee.
+
+Before using generated code with real HubSpot data or real users, review `docs/implementation-responsibility.md`, `REAL_TOOL_CHECKLIST.md`, and `docs/non-developer-safety-gates.md`. Builders are responsible for checking their own HubSpot developer requirements, auth model, scopes, hosting setup, token storage, privacy obligations, platform terms, and production readiness.
+
