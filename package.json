@@ -1,0 +1,13 @@
+{
+    "version":  "0.1.0",
+    "name":  "hubspot-oauth-service-ai-starter",
+    "description":  "AI-optimized, hosting-neutral HubSpot starter repository.",
+    "scripts":  {
+                    "check:ai":  "node scripts/ai-readiness-check.js",
+                    "smoke:example":  "node scripts/smoke-example.js"
+                },
+    "engines":  {
+                    "node":  "\u003e=20"
+                },
+    "private":  true
+}

@@ -1,0 +1,6 @@
+---
+description: HubSpot AI starter repository guidance
+alwaysApply: true
+---
+
+Follow `AGENTS.md` first. Keep this repository AI-tool-neutral, hosting-neutral, mock-first, and security-first. Do not ask users to paste secrets into chat. Do not add real HubSpot portal IDs, account IDs, private deployment URLs, tokens, refresh tokens, client secrets, or customer data.
