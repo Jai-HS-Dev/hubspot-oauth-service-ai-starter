@@ -1,0 +1,51 @@
+name: Feature or recipe request
+description: Suggest a new recipe, prompt, doc, or starter capability.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Do not include secrets, tokens, portal IDs, private URLs, screenshots with customer data, or CRM exports.
+  - type: textarea
+    id: goal
+    attributes:
+      label: What should this help someone build?
+      description: Describe the HubSpot tool, card, OAuth flow, or AI-assisted workflow.
+      placeholder: "Example: A contact card that shows renewal risk using mock data first."
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Main audience
+      options:
+        - Non-developer
+        - Vibe coder
+        - Developer
+        - AI coding tool
+        - All of the above
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - README or start-here docs
+        - AI prompt or instruction file
+        - Recipe
+        - Example code
+        - Security guidance
+        - Hosting guidance
+        - Auth or OAuth guidance
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety or implementation notes
+      description: Mention auth, scopes, hosting, mock data, or privacy considerations if relevant.
+    validations:
+      required: false
