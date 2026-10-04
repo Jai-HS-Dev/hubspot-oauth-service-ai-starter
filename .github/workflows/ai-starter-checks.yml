@@ -18,10 +18,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: AI readiness check
         run: npm run check:ai
+
+      - name: Environment doctor
+        run: npm run doctor
 
       - name: Example syntax check
         working-directory: examples/minimal-oauth-service

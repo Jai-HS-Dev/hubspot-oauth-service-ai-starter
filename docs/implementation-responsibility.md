@@ -27,7 +27,7 @@ For public starter repositories, keep these files visible and current:
 Before using a generated tool with real users or real HubSpot data, the builder should verify:
 
 - HubSpot developer platform requirements for their app type.
-- Whether OAuth, static auth, a private app token, or another server-side auth pattern is appropriate.
+- Whether OAuth, a Service Key, a legacy migration token, or another server-side auth pattern is appropriate.
 - The minimum HubSpot scopes needed for the exact API endpoints used.
 - Whether the app is for one account, many accounts, internal use, or marketplace distribution.
 - Hosting limits, environment variable handling, logs, rollbacks, HTTPS, rate limits, and abuse controls.

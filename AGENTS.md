@@ -13,6 +13,8 @@ You are helping a user plan or build a HubSpot OAuth service from this starter r
 - Validate OAuth `state` in any implementation.
 - Request minimum scopes.
 - Treat this as an educational starter, not production-certified infrastructure.
+- Use HubSpot's documented `2026-09` OAuth endpoints and keep API versions centralized.
+- Explain that OAuth is for reusable or multi-account apps; Service Keys fit eligible single-account system integrations.
 
 ## Good First Workflow
 
@@ -22,4 +24,3 @@ You are helping a user plan or build a HubSpot OAuth service from this starter r
 4. Create an OAuth flow plan before writing code.
 5. Add `.env.example` entries only with placeholders.
 6. Add safety checks for `state`, token storage, refresh, revocation, and logging.
-

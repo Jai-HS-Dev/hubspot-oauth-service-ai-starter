@@ -27,6 +27,7 @@ Then run the local checks:
 ```bash
 npm run check:ai
 npm run smoke:example
+npm run doctor
 ```
 
 On Windows PowerShell, if `npm` is blocked by script policy, use:
@@ -34,7 +35,14 @@ On Windows PowerShell, if `npm` is blocked by script policy, use:
 ```powershell
 npm.cmd run check:ai
 npm.cmd run smoke:example
+npm.cmd run doctor
 ```
+
+## Current HubSpot Baseline
+
+This starter targets HubSpot OAuth API `2026-09` and Node.js 22+. Read `COMPATIBILITY.md` before choosing an account model or host, and use `MIGRATION.md` when updating older code. OAuth remains the default for reusable or multi-account apps; eligible single-account system integrations should evaluate Service Keys.
+
+User-level app, Service Key, and connected-app operational recipes are in `docs/fall-2026-feature-recipes.md`.
 
 ## Pick Your Path
 
@@ -170,4 +178,3 @@ This starter is released under the MIT license in `LICENSE`. That makes it permi
 The starter is provided as-is, without warranty or liability. It is not legal advice, a security audit, a compliance review, HubSpot approval, marketplace approval, or a production guarantee.
 
 Before using generated code with real HubSpot data or real users, review `docs/implementation-responsibility.md`, `REAL_TOOL_CHECKLIST.md`, and `docs/non-developer-safety-gates.md`. Builders are responsible for checking their own HubSpot developer requirements, auth model, scopes, hosting setup, token storage, privacy obligations, platform terms, and production readiness.
-

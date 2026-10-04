@@ -10,9 +10,13 @@ Use when a card or demo shows safe static content, mock data, or public informat
 
 Use fake data while designing behavior. This is the safest default for AI-assisted work.
 
-## Private App Token Local Prototype
+## Service Key For One Account
 
-Useful for a developer testing against their own portal. Keep the token in `.env` or a secret manager. Do not ship this as the default architecture for apps used by many accounts.
+Use a scoped HubSpot Service Key for a new admin-owned, single-account system integration when the target portal supports it. Store it only in a server-side secret manager. Service Keys are public beta in platform `2026.09`, so keep a tested fallback until the feature is available for the target account.
+
+## Legacy Private App Token
+
+Use only to maintain or migrate an existing installation. Do not make a new private app token the default path in generated code or beginner instructions.
 
 ## HubSpot Serverless Function Context
 

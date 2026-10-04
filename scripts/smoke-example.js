@@ -1,4 +1,3 @@
-const { spawn } = require('node:child_process');
 const path = require('node:path');
 
 const repoType = process.env.SMOKE_REPO_TYPE || inferRepoType();
@@ -6,32 +5,26 @@ const port = String(4100 + Math.floor(Math.random() * 1000));
 const config = getConfig(repoType);
 const exampleDir = path.join(process.cwd(), config.exampleDir);
 
-let child;
-
 main().catch((error) => {
   console.error(`Smoke check failed: ${error.message}`);
-  if (child) child.kill();
   process.exit(1);
 });
 
 async function main() {
-  child = spawn(process.execPath, ['server.js'], {
-    cwd: exampleDir,
-    env: {
-      ...process.env,
-      PORT: port,
-      USE_MOCK_DATA: 'true'
-    },
-    stdio: ['ignore', 'pipe', 'pipe']
-  });
+  process.env.PORT = port;
+  process.env.USE_MOCK_DATA = 'true';
+  const { startServer } = require(path.join(exampleDir, 'server.js'));
+  const server = startServer(Number(port));
 
-  child.stdout.on('data', (chunk) => process.stdout.write(chunk));
-  child.stderr.on('data', (chunk) => process.stderr.write(chunk));
-
-  await waitForServer(`http://127.0.0.1:${port}/`);
-  await config.assert(`http://127.0.0.1:${port}`);
-  child.kill();
-  console.log(`${repoType} smoke example passed.`);
+  try {
+    await waitForServer(`http://127.0.0.1:${port}/`);
+    await config.assert(`http://127.0.0.1:${port}`);
+    console.log(`${repoType} smoke example passed.`);
+  } finally {
+    await new Promise((resolve, reject) => {
+      server.close((error) => error ? reject(error) : resolve());
+    });
+  }
 }
 
 function getConfig(type) {
@@ -94,7 +87,6 @@ function inferRepoType() {
 async function waitForServer(url) {
   const started = Date.now();
   while (Date.now() - started < 5000) {
-    if (child.exitCode !== null) throw new Error('example server exited before smoke check');
     try {
       const response = await fetch(url);
       if (response.ok) return;

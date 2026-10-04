@@ -18,7 +18,8 @@ Pick one auth path before calling HubSpot APIs:
 
 - no auth for static or mock examples
 - HubSpot serverless function context for simple project functions
-- private app token only for local developer testing
+- scoped Service Key for an eligible single-account system integration
+- private app token only while migrating an existing legacy installation
 - external endpoint validation for HubSpot-called endpoints
 - OAuth-backed service for real multi-account apps
 

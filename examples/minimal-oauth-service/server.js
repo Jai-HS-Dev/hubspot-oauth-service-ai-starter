@@ -4,8 +4,12 @@ const http = require('node:http');
 const { deleteInstallation, getInstallation, saveInstallation } = require('./memory-token-store');
 
 const AUTH_URL = 'https://app.hubspot.com/oauth/authorize';
-const TOKEN_URL = 'https://api.hubapi.com/oauth/2026-03/token';
-const REVOKE_URL = 'https://api.hubapi.com/oauth/2026-03/token/revoke';
+const HUBSPOT_API_VERSION = process.env.HUBSPOT_API_VERSION || '2026-09';
+if (!/^\d{4}-\d{2}$/.test(HUBSPOT_API_VERSION)) {
+  throw new Error('HUBSPOT_API_VERSION must use YYYY-MM format');
+}
+const TOKEN_URL = `https://api.hubapi.com/oauth/${HUBSPOT_API_VERSION}/token`;
+const REVOKE_URL = `https://api.hubapi.com/oauth/${HUBSPOT_API_VERSION}/token/revoke`;
 const PORT = Number(process.env.PORT || 3000);
 
 const server = http.createServer(async (request, response) => {
@@ -47,9 +51,15 @@ const server = http.createServer(async (request, response) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`OAuth example listening on http://localhost:${PORT}`);
-});
+function startServer(port = PORT) {
+  return server.listen(port, () => {
+    console.log(`OAuth example listening on http://localhost:${port}`);
+  });
+}
+
+if (require.main === module) startServer();
+
+module.exports = { server, startServer };
 
 function buildAuthorizationUrl(request, currentUrl) {
   const state = signState({
@@ -255,4 +265,3 @@ function escapeHtml(value) {
     "'": '&#39;'
   }[char]));
 }
-

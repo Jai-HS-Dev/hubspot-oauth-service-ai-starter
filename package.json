@@ -4,10 +4,11 @@
     "description":  "AI-optimized, hosting-neutral HubSpot starter repository.",
     "scripts":  {
                     "check:ai":  "node scripts/ai-readiness-check.js",
-                    "smoke:example":  "node scripts/smoke-example.js"
+                    "smoke:example":  "node scripts/smoke-example.js",
+                    "doctor":  "node scripts/doctor.js"
                 },
     "engines":  {
-                    "node":  "\u003e=20"
+                    "node":  "\u003e=22"
                 },
     "private":  true
 }

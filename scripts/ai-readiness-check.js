@@ -7,11 +7,14 @@ const requiredFiles = [
   'START_WITH_AI.md',
   'AGENTS.md',
   'SECURITY.md',
+  'COMPATIBILITY.md',
+  'MIGRATION.md',
   'docs/start-here.md',
   'docs/security-for-non-developers.md',
   'docs/ai-coding-tools.md',
   'docs/auth-options.md',
   'docs/hosting-options.md',
+  'docs/fall-2026-feature-recipes.md',
   'docs/developer-architecture.md',
   'docs/non-developer-safety-gates.md',
   'docs/implementation-responsibility.md',
@@ -22,6 +25,8 @@ const requiredFiles = [
   '.cursor/rules/hubspot-ai-starter.mdc',
   '.windsurfrules'
 ];
+
+const legacyCrmPath = /\/crm\/v[1-4]\//;
 
 const forbiddenPatterns = [
   { name: 'raw HubSpot private token', pattern: /pat-[a-z0-9_-]{20,}/i },
@@ -55,6 +60,9 @@ if (fs.existsSync(path.join(root, '.env'))) {
 for (const file of walk(root)) {
   const rel = path.relative(root, file).replace(/\\/g, '/');
   const content = fs.readFileSync(file, 'utf8');
+  if (/\.(?:cjs|mjs|js|jsx|ts|tsx)$/.test(rel) && rel !== 'scripts/ai-readiness-check.js' && legacyCrmPath.test(content)) {
+    failures.push(`${rel}: uses a legacy HubSpot CRM API path; use the documented 2026-09 path`);
+  }
   for (const rule of forbiddenPatterns) {
     if (rule.pattern.test(content)) {
       failures.push(`${rel}: matched ${rule.name}`);

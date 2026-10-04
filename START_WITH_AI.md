@@ -14,7 +14,8 @@ Help me choose the safest path for my goal:
 - HubSpot serverless functions
 - external serverless functions
 - OAuth-backed service
-- private app token local prototype
+- Service Key for an eligible single-account system integration
+- legacy private app migration only
 - help me choose
 
 Before editing code, summarize the plan in plain English. After editing, tell me what changed, what command to run, and what security step I should verify.
