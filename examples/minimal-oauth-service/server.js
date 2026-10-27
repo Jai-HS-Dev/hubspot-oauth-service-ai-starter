@@ -151,7 +151,7 @@ async function exchangeCodeForTokens(code, redirectUri) {
 
   const payload = await response.json();
   if (!response.ok) {
-    throw new Error(payload.message || `Token exchange failed with status ${response.status}`);
+    throw new Error(oauthErrorMessage(payload, `Token exchange failed with status ${response.status}`));
   }
 
   return payload;
@@ -218,6 +218,10 @@ function requireEnv(name) {
   const value = String(process.env[name] || '').trim();
   if (!value) throw new Error(`${name} is required`);
   return value;
+}
+
+function oauthErrorMessage(payload = {}, fallback) {
+  return String(payload.error_description || payload.error || payload.message || fallback).trim();
 }
 
 async function readJson(request) {
