@@ -2,6 +2,31 @@
 
 Use this checklist when moving an older HubSpot project or AI-generated prototype into this starter.
 
+## Migration Deadlines
+
+Reviewed on 2026-10-27. Prefer endpoint-specific notices over a general schedule.
+
+| Surface | Deadline | Required action if used |
+| --- | --- | --- |
+| Pipelines API v1 | December 4, 2026 | Migrate before these endpoints stop working. |
+| CRM API v4 | March 30, 2027 | Migrate before its separate, earlier end-of-support date. |
+| Projects 2025.2 or older | March 2027 | Move to a supported project platform; this starter targets 2026.09. |
+| API v1-v3 and legacy public/private app architecture | September 2027 | Migrate API versions and app architecture separately. |
+| New legacy private app creation | Already disabled: September 28, 2026 for new accounts; October 26, 2026 for existing accounts | Use an eligible Service Key or a Projects-based app instead. |
+
+Unsupported does not always mean immediate shutdown. Pipelines v1 is explicitly
+being retired; other notices describe loss of support and Marketplace impacts.
+Confirm the exact endpoint notice before planning a cutover.
+
+Review HubSpot Development > Migrations > APIs. Warnings reflect runtime calls,
+not just current source files. Verify the installed deployment and recent calls
+after migrating, and retain a tested rollback.
+
+Sources:
+- [Pipelines v1 sunset](https://developers.hubspot.com/changelog/pipelines-api-v1-sunset)
+- [Legacy APIs, apps, and project deadlines](https://developers.hubspot.com/changelog/legacy-apis-and-legacy-apps-whats-going-unsupported-and-when)
+
+
 ## 1. Inventory Before Editing
 
 - Record every HubSpot API path, auth method, scope, webhook, workflow action, card, and hosting secret.
@@ -27,6 +52,7 @@ Do not perform a blind text replacement. Request fields and response shapes can 
 - Capture and surface the response `warnings` array.
 - Preserve HubSpot's correlation ID in server logs, but do not expose credentials or private CRM payloads.
 - Test create, update, association, permission-denied, and validation-failure paths in a developer account.
+- Follow `docs/crm-write-validation-tests.md` for synthetic cases and release checks. Mock tests alone do not validate a live account's rules.
 
 ## 4. Modernize Authentication
 
@@ -49,4 +75,3 @@ Then test with synthetic records before real customer data. Review scopes, unins
 ## Optional Features
 
 App Actions and Activity Auto Associations are public beta features. Put them behind a feature flag and keep a fallback. Task Series is GA but still needs portal entitlement and recurrence-specific tests. Remote MCP users should reauthenticate when adding new scopes.
-
