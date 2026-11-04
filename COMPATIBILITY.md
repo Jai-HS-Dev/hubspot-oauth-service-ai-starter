@@ -10,6 +10,19 @@ This starter is aligned with HubSpot's Fall 2026 developer platform.
 - AI tools: Codex, Cursor, Claude Code, GitHub Copilot, Gemini CLI, Windsurf, and tools that can read repository instructions
 - Hosting: Cloudflare, Vercel, Netlify, Railway, Render, AWS, Azure, Google Cloud, a VPS, or HubSpot-hosted functions where the runtime fits
 
+## Runtime Boundaries
+
+| Execution surface | Runtime responsibility |
+| --- | --- |
+| Local examples and CLI tooling | The documented local Node.js 22+ baseline; verify each tool's requirements. |
+| HubSpot project functions on 2026.03 or 2026.09 | HubSpot-managed Node.js 24, selected by platform version. |
+| Workflow custom code | Select Node.js 24 per action and return outputFields without callbacks. |
+| External backend or Cloudflare Worker | Provider-specific runtime; no host migration is implied by HubSpot's Design Manager sunset. |
+
+See `MIGRATION.md` for the November 2026 editing restrictions, February 2027
+Design Manager shutdown, and per-action testing steps. Local Node.js requirements
+are not a claim about the runtime of every HubSpot-hosted execution surface.
+
 ## Authentication Decision
 
 | Use case | Recommended path |
@@ -33,6 +46,7 @@ Service Keys are in public beta in HubSpot platform `2026.09`. Confirm availabil
 | Activity Auto Associations API | Optional public-beta extension |
 | User-level apps | Optional; enable only when per-user permissions are required |
 | Remote MCP expanded tools | Optional; reauthenticate to receive newly granted scopes |
+| AI connector Sensitive Data beta | Explicit admin opt-in only; Remote MCP supports read-only engagements, not Sensitive Data properties. See docs/security-for-non-developers.md. |
 | App `mcp-server` component | Optional; marketplace distribution requires HubSpot review |
 
 ## Project Focus

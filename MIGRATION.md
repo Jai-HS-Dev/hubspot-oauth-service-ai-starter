@@ -4,13 +4,17 @@ Use this checklist when moving an older HubSpot project or AI-generated prototyp
 
 ## Migration Deadlines
 
-Reviewed on 2026-10-27. Prefer endpoint-specific notices over a general schedule.
+Reviewed on 2026-11-04. Prefer endpoint-specific notices over a general schedule.
 
 | Surface | Deadline | Required action if used |
 | --- | --- | --- |
+| New legacy Design Manager functions and Node.js 20 workflow custom code actions | Creation blocked November 3, 2026 | Use Developer Projects for functions; select Node.js 24 for custom code actions. |
+| Existing Design Manager functions and Node.js 20 workflow custom code actions | Editing blocked November 17, 2026 | Migrate and test before edits are blocked; existing executions continue. |
+| Legacy Design Manager functions | Execution stops February 1, 2027 | Rebuild in a Developer Project and update every caller. This shutdown date is not announced for workflow custom code actions. |
 | Pipelines API v1 | December 4, 2026 | Migrate before these endpoints stop working. |
 | CRM API v4 | March 30, 2027 | Migrate before its separate, earlier end-of-support date. |
-| Projects 2025.2 or older | March 2027 | Move to a supported project platform; this starter targets 2026.09. |
+| Projects 2025.2 | March 2027 | Move to a supported project platform; this starter targets 2026.09. |
+| Projects 2025.1, 2023.2, or 2023.1 | Already sunset | Migrate before building or deploying; do not wait for March 2027. |
 | API v1-v3 and legacy public/private app architecture | September 2027 | Migrate API versions and app architecture separately. |
 | New legacy private app creation | Already disabled: September 28, 2026 for new accounts; October 26, 2026 for existing accounts | Use an eligible Service Key or a Projects-based app instead. |
 
@@ -25,6 +29,21 @@ after migrating, and retain a tested rollback.
 Sources:
 - [Pipelines v1 sunset](https://developers.hubspot.com/changelog/pipelines-api-v1-sunset)
 - [Legacy APIs, apps, and project deadlines](https://developers.hubspot.com/changelog/legacy-apis-and-legacy-apps-whats-going-unsupported-and-when)
+- [Function and workflow runtime sunset](https://developers.hubspot.com/changelog/sunsetting-design-manager-serverless-functions-and-older-node.js-runtimes-for-custom-code-actions)
+
+## Runtime Migration Boundaries
+
+HubSpot-hosted functions in Projects `2026.03` and `2026.09` already run on
+managed Node.js 24. Workflow custom code selects its runtime per action: remove
+the callback parameter and return `{ outputFields: ... }` from every completion
+path, await asynchronous work, and check the runtime's supplied library versions.
+Changing this repo does not update workflow code already pasted into HubSpot.
+
+Legacy Design Manager endpoints under `/_hcms/api/` need a project migration
+with caller updates to `/hs/serverless/`, tested responses, and a rollback plan.
+The repo's local Node.js minimum and an external host's runtime are separate;
+do not move hosting or change Cloudflare compatibility settings just for this notice.
+Test with synthetic data and approval before updating real workflows or callers.
 
 
 ## 1. Inventory Before Editing
@@ -47,7 +66,9 @@ Do not perform a blind text replacement. Request fields and response shapes can 
 
 ## 3. Handle The 2026-09 Write Contract
 
-- Send every property and association required by the target portal's admin settings.
+- Supply required creation properties and conditional properties enforced by the API.
+- HubSpot's October 27 correction says required creation associations remain UI-only. If your app requires a link, validate and create it explicitly, then verify it; do not assume HubSpot rejects an API create without it.
+- Test Edit Associations permissions for user-level OAuth separately; this restriction does not affect portal-level app tokens.
 - Treat conditional required-property errors as actionable validation failures.
 - Capture and surface the response `warnings` array.
 - Preserve HubSpot's correlation ID in server logs, but do not expose credentials or private CRM payloads.

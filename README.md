@@ -44,6 +44,11 @@ This starter targets HubSpot OAuth API `2026-09` and Node.js 22+. Read `COMPATIB
 
 User-level app, Service Key, and connected-app operational recipes are in `docs/fall-2026-feature-recipes.md`.
 
+Node.js 22+ above describes local examples, not every managed HubSpot runtime.
+Workflow custom code now needs Node.js 24 async-return handlers. See
+`MIGRATION.md` for the November editing deadlines and `COMPATIBILITY.md` for
+the distinction between project functions, workflow actions, and external hosts.
+
 ## Pick Your Path
 
 ### I Am A Non-Developer
