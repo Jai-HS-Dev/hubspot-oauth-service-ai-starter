@@ -81,6 +81,11 @@ grant extra scopes or enter production credentials just to make a check pass.
 
 ## 3. Choose Authentication And Hosting Only If Needed
 
+Mock-only learning can stop here. To install a card/tool or work with HubSpot data,
+continue with [the HubSpot connection guide](connect-to-hubspot.md). It covers a
+separate developer test account, feature/plan checks, authentication, hosting and
+an approved synthetic trial. A HubSpot test is the next milestone, not production.
+
 Read [which path fits](choose-your-path.md). You do not need all four starters.
 Your feature is mock-only, already has working reviewed authorization, or uses an eligible single-account integration that does not need a reusable OAuth service.
 
@@ -89,8 +94,8 @@ Preserve working choices unless a change is necessary. Use [auth choices](auth-o
 [hosting choices](hosting-options.md) and [compatibility](../COMPATIBILITY.md).
 Provider options are alternatives, not ready-made adapters for every host.
 
-Do not connect anything yet. Obtain explicit approval for the exact account,
-operation and synthetic test data before any live trial. Passing mock tests is
+Before connecting, obtain explicit approval for the exact account,
+operation and synthetic test data. Passing mock tests is
 not permission to read customer data, create records, publish or deploy.
 
 ## 4. Build One Small Change

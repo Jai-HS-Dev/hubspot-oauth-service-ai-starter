@@ -31,7 +31,7 @@ test('one walkthrough links scope, recovery, evidence and responsibility', () =>
   assert.ok(read('README.md').includes('(docs/start-here.md)'));
   assert.ok(read('docs/troubleshooting.md').includes('npm.cmd'));
   // Check local Markdown file targets without executing any document content.
-  for (const rel of ['README.md', 'START_WITH_AI.md', 'docs/start-here.md', 'docs/troubleshooting.md', 'docs/choose-your-path.md']) {
+  for (const rel of ['README.md', 'START_WITH_AI.md', 'docs/start-here.md', 'docs/connect-to-hubspot.md', 'docs/auth-options.md', 'docs/troubleshooting.md', 'docs/choose-your-path.md']) {
     for (const match of read(rel).matchAll(/\]\(([^)]+)\)/g)) {
       if (/^(https?:|mailto:|#)/.test(match[1])) continue;
       const target = path.resolve(root, path.dirname(rel), match[1].split('#')[0]);
@@ -39,6 +39,16 @@ test('one walkthrough links scope, recovery, evidence and responsibility', () =>
     }
   }
 });
+test('mock learning leads to an approved account trial, not implied production readiness', () => {
+  const guide = read('docs/connect-to-hubspot.md');
+  assert.ok(read('README.md').includes('(docs/connect-to-hubspot.md)'));
+  assert.ok(read('docs/start-here.md').includes('(connect-to-hubspot.md)'));
+  assert.ok(read('docs/auth-options.md').includes('(connect-to-hubspot.md)'));
+  for (const phrase of ['developer test account', 'Static app authentication', 'OAuth', 'Service Key', 'synthetic records', 'separate decision', 'Never ask for secrets']) assert.ok(guide.includes(phrase), phrase);
+  assert.ok(guide.includes('https://developers.hubspot.com/docs/getting-started/account-types'));
+  assert.ok(guide.includes('https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview'));
+});
+
 test('AI entry points agree and client adapters delegate', () => {
   const rules = read('AGENTS.md'), prompt = read('START_WITH_AI.md');
   const question = rules.match(/First ask: "([^"]+)"/);

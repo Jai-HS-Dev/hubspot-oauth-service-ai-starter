@@ -2,6 +2,9 @@
 
 HubSpot projects can use several auth patterns. Choose based on the real risk and audience.
 
+For account selection and a first approved test, follow
+[From Mock Demo To A HubSpot Test](connect-to-hubspot.md).
+
 ## No Auth
 
 Use when a card or demo shows safe static content, mock data, or public information and does not call private APIs.
@@ -13,6 +16,14 @@ Use fake data while designing behavior. This is the safest default for AI-assist
 ## Service Key For One Account
 
 Use a scoped HubSpot Service Key for a new admin-owned, single-account system integration when the target portal supports it. Store it only in a server-side secret manager. Service Keys are public beta in platform `2026.09`, so keep a tested fallback until the feature is available for the target account.
+
+## Static Authentication For A Project-Based App
+
+Evaluate static app authentication for an app restricted to one account, where
+the selected feature supports it. This is an app installation model, not a
+Service Key or permission to expose a token in a card. See
+[HubSpot's authentication overview](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview).
+Preserve an existing OAuth setup unless there is a reviewed reason to change it.
 
 ## Legacy Private App Token
 

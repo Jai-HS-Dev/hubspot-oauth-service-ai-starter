@@ -2,8 +2,10 @@
 
 Learn how a HubSpot app asks permission to access an account, without exposing its credentials.
 
-**A guided blueprint with small examples, not a finished production integration.**
-You do not need coding experience or a connected HubSpot account to begin.
+**A practical blueprint for building and testing your own HubSpot integration,
+not a finished production app.**
+Start with made-up data, then connect a suitable HubSpot account to test your real
+feature. No coding experience is assumed; the guide helps you choose each next step.
 
 ## What This Helps You Build
 
@@ -40,6 +42,8 @@ Help me build authorization for a HubSpot feature that [describe your goal].
 Start with the mock example. Ask one question at a time.
 Explain each command and its expected result before I run it.
 Never ask me to paste secrets or customer data.
+When I am ready for a HubSpot test, use docs/connect-to-hubspot.md.
+Help me choose an account, authentication and hosting without assuming I need OAuth.
 Ask for explicit approval before packages, account access, live writes or deployment.
 ```
 
@@ -81,6 +85,15 @@ The check closes its local server automatically.
 
 If a command fails, stop and use [troubleshooting](docs/troubleshooting.md).
 Do not weaken security settings or enter live credentials to make it pass.
+
+## Connect To HubSpot When You're Ready
+
+The mock needs no account connection. Installing a card/tool or working with real
+HubSpot data does need a suitable account, permissions and authentication.
+Use [the connection guide](docs/connect-to-hubspot.md) to choose or create a
+separate developer test account, check feature availability, and plan OAuth or
+another supported option. Your assistant should explain the choices and ask
+approval before setup or connection. Test first; production is a separate decision.
 
 ## What Is Included And What Isn't
 
