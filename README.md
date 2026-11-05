@@ -130,6 +130,9 @@ Read [plain-English security guidance](docs/security-for-non-developers.md) and
 
 ## Developer Reference
 
+For a small next step, try [the worked exercise](docs/worked-example.md).
+New terms are explained in [the glossary](docs/glossary.md).
+
 - [Architecture](docs/developer-architecture.md) and [contract](docs/contracts/oauth-installation-contract.md).
 - [Compatibility and reviewed versions](COMPATIBILITY.md), [migration guidance](MIGRATION.md) and [upgrade notes](UPGRADE_NOTES.md).
 - [Optional feature recipes](docs/fall-2026-feature-recipes.md) and [verification evidence](EVIDENCE.md).

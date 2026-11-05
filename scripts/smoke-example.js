@@ -1,7 +1,7 @@
 const path = require('node:path');
+const { once } = require('node:events');
 
 const repoType = process.env.SMOKE_REPO_TYPE || inferRepoType();
-const port = String(4100 + Math.floor(Math.random() * 1000));
 const config = getConfig(repoType);
 const exampleDir = path.join(process.cwd(), config.exampleDir);
 
@@ -11,15 +11,17 @@ main().catch((error) => {
 });
 
 async function main() {
-  process.env.PORT = port;
   process.env.USE_MOCK_DATA = 'true';
   process.env.OAUTH_ADMIN_SECRET = 'synthetic-smoke-' + 'x'.repeat(32);
   const { startServer } = require(path.join(exampleDir, 'server.js'));
-  const server = startServer(Number(port));
+  const server = startServer(0);
 
   try {
-    await waitForServer(`http://127.0.0.1:${port}/`);
-    await config.assert(`http://127.0.0.1:${port}`);
+    await once(server, 'listening');
+    const baseUrl = 'http://127.0.0.1:' + server.address().port;
+    const health = await fetch(baseUrl + '/', { signal: AbortSignal.timeout(5000) });
+    assert(health.ok, 'root route should return 200');
+    await config.assert(baseUrl);
     console.log(`${repoType} smoke example passed.`);
   } finally {
     await new Promise((resolve, reject) => {
@@ -96,23 +98,6 @@ function inferRepoType() {
   if (cwd.includes('oauth')) return 'oauth';
   if (cwd.includes('contact-card')) return 'card';
   return 'agent';
-}
-
-async function waitForServer(url) {
-  const started = Date.now();
-  while (Date.now() - started < 5000) {
-    try {
-      const response = await fetch(url);
-      if (response.ok) return;
-    } catch (_) {
-      await delay(150);
-    }
-  }
-  throw new Error('example server did not start within 5 seconds');
-}
-
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function assert(condition, message) {

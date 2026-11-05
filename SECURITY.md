@@ -1,8 +1,24 @@
 # Security Policy
 
-Do not open public issues containing secrets, tokens, private URLs, portal IDs, customer data, or screenshots with private account details.
+Do not put credentials, customer data, private URLs, account identifiers or filled
+reports in public issues, screenshots or logs.
 
-If you believe you found a security problem in this starter, use GitHub private vulnerability reporting if it is enabled for this repository.
+## Report Privately
 
-This project is educational starter material. Before using it with real data, review your own authentication, authorization, scopes, token storage, logging, hosting, privacy, and compliance requirements.
+Open [Report a vulnerability](https://github.com/Jai-HS-Dev/hubspot-oauth-service-ai-starter/security/advisories/new).
+Private vulnerability reporting was enabled when checked on 2026-11-05.
+If the form is unavailable, use a public issue only to request a private contact;
+do not include vulnerability details, proofs containing private data or secrets.
+No monitored security email or response-time commitment is supplied here.
+[GitHub's reporting guide](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/report-privately).
+
+## Scope And Support
+
+This is guided learning material, not a security audit or production service.
+Report the starter version/commit, affected example, expected/actual behavior
+and a minimal synthetic reproduction privately. Never submit real credentials.
+
+Local mock tests do not verify authorization in an installed HubSpot account.
+No supported-version SLA, comprehensive history scan or absence-of-vulnerabilities
+guarantee is claimed. See [support](SUPPORT.md) and [evidence](EVIDENCE.md).
 

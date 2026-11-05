@@ -33,9 +33,16 @@ Use only to maintain or migrate an existing installation. Do not make a new priv
 
 Useful for app cards and project functions where HubSpot provides the runtime context. Keep sensitive work server-side and avoid exposing tokens to browser code.
 
+This is a runtime choice, not a substitute for app authentication or caller
+authorization. Check whether the exact feature supports the selected app auth.
+
 ## External Endpoint With Shared Secret Or Signature Validation
 
 Useful for workflow actions or tool endpoints called from HubSpot. Validate requests server-side and avoid putting secrets in URLs.
+
+The runnable agent service shared secret is for trusted server callers only.
+HubSpot caller envelopes/signatures need their own reviewed adapter. Validate
+the permitted account, user and records separately from backend CRM credentials.
 
 ## OAuth-Backed Service
 

@@ -10,25 +10,30 @@ permissions:
 
 jobs:
   checks:
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [22, 24]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, reviewed 2026-11-05
         with:
-          node-version: 22
-
-      - name: AI readiness check
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4, reviewed 2026-11-05
+        with:
+          node-version: ${{ matrix.node }}
+      - name: AI readiness and documentation checks
         run: npm run check:ai
-
-      - name: Environment doctor
-        run: npm run doctor
-
-      - name: Example syntax check
-        working-directory: examples/minimal-oauth-service
+      - name: Source syntax checks
         run: npm run check
-
-      - name: Smoke example
+      - name: Offline first-run check
+        run: npm run doctor
+      - name: Credential-free demo
         run: npm run smoke:example
+      - name: Full local test suite
+        run: npm test

@@ -1,5 +1,25 @@
 # Repository Maintainer Checklist
 
+## GitHub Settings And Release Follow-Through
+
+Read-only settings snapshot checked 2026-11-05; no settings changed by these files.
+
+- Private vulnerability reporting: enabled; keep the direct reporting link working.
+- Add a short description and relevant topics; the template flag is already enabled.
+- Main was unprotected. Plan a PR-and-passing-CI rule after actual workflow runs;
+  agree review count and bypass/recovery options for a solo maintainer first.
+- Secret-scanning/push-protection status was not available in this read-only check.
+  Verify it in GitHub; a null API field is not evidence that a control is disabled.
+- Review these changes in a PR before publishing. CI has no HubSpot credentials,
+  deployment job or privileged pull_request_target event.
+- Publish release notes only after verifying the release contents and checks.
+  Existing release tags do not automatically include later main-branch changes.
+- Keep reviewed companion snapshots distinct from latest learning documentation.
+  Update pins deliberately; do not claim compatibility merely because a link works.
+- A source-copy test is not an independent beginner or AI-client evaluation.
+  Run the manual scenarios with consenting users/selected clients, record failures
+  and versions, and do not send private data to additional AI services by default.
+
 Use this checklist when reviewing changes to this public starter.
 
 ## Community Health
