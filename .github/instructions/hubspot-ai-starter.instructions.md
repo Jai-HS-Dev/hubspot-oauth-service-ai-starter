@@ -1,5 +1,8 @@
-﻿---
+---
 applyTo: "**/*"
 ---
 
-Follow `AGENTS.md` first. Keep this repository AI-tool-neutral and hosting-neutral. Do not introduce real secrets, portal IDs, account IDs, private deployment URLs, customer data, or vendor lock-in. Prefer mock data first, then documented auth choices.
+Follow AGENTS.md in the repository root as the canonical instructions.
+Use README.md for scope, START_WITH_AI.md for the first prompt and docs/start-here.md
+for the single beginner path. Keep this a guided starter, not a production implementation.
+Do not maintain a separate copy of the safety or platform rules here.

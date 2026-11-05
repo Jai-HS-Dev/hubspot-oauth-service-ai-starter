@@ -8,7 +8,7 @@ This document is practical project guidance, not legal advice.
 
 - You can use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the starter code, subject to the MIT license text in `LICENSE`.
 - If you copy or redistribute substantial portions of the starter, keep the copyright and license notice included as required by the MIT license.
-- The starter is provided without warranty and without liability from the authors or copyright holders.
+- The MIT license includes warranty disclaimers and liability limitations; read the exact terms in [LICENSE](../LICENSE). This guidance does not promise immunity from legal claims. Seek qualified legal advice about your circumstances when needed.
 - The license does not mean a generated app is automatically secure, compliant, approved by HubSpot, eligible for the HubSpot Marketplace, or ready for production.
 - The license covers this repository's code and docs. It does not grant rights to third-party services, trademarks, branding, APIs, data, or platform accounts.
 

@@ -2,6 +2,11 @@
 
 Plan and build a server-side OAuth service for HubSpot apps with help from any AI coding tool.
 
+**Guided starter, not a finished production integration.**
+
+**Your first result:** Run an offline install, callback, refresh and revoke simulation, and write a plan for the authorization your feature actually needs. An offline OAuth lifecycle passes, including browser binding and replay rejection. No real account is connected.
+
+
 This starter is for three kinds of users:
 
 - Non-developers who need plain-English guidance and safe defaults.
@@ -12,33 +17,23 @@ This repo is AI-tool-neutral and hosting-neutral. It can be used with Codex, Cur
 
 ## Quick Start
 
-If you are using an AI coding tool, start here:
+Follow [your first working result](docs/start-here.md): describe your goal, run the
+credential-free mock, choose auth/hosting only if needed, make one small change,
+and verify what is still unfinished. No account connection is needed to begin.
 
-```text
-Read START_WITH_AI.md first, then README.md, AGENTS.md, docs/start-here.md, docs/oauth-flow.md, docs/non-developer-safety-gates.md, and docs/security-for-non-developers.md.
+Using an assistant? Open [START_WITH_AI.md](START_WITH_AI.md). It should ask one
+plain-language question at a time. The walkthrough includes Windows commands,
+expected output, stop instructions and [safe recovery](docs/troubleshooting.md).
 
-Ask me one question at a time. Start with the local example. Do not ask me to paste secrets, client secrets, access tokens, refresh tokens, portal IDs, private URLs, or customer data into chat.
-
-Help me plan a HubSpot OAuth service safely.
-```
-
-Then run the local checks:
-
-```bash
-npm run check:ai
-npm run smoke:example
-npm run doctor
-```
-
-On Windows PowerShell, if `npm` is blocked by script policy, use:
-
-```powershell
-npm.cmd run check:ai
-npm.cmd run smoke:example
-npm.cmd run doctor
-```
+Experienced developers can jump to [architecture](docs/developer-architecture.md)
+and [the contract](docs/contracts/oauth-installation-contract.md); the same evidence and safety limits apply.
 
 ## Current HubSpot Baseline
+
+Read [EVIDENCE.md](EVIDENCE.md) for exactly what is implemented, tested locally,
+and still needs developer-account or production verification. Run `npm test`
+after setup as well as the smoke check; the two checks cover different behavior.
+For behavior changes in existing copies, read [UPGRADE_NOTES.md](UPGRADE_NOTES.md).
 
 This starter targets HubSpot OAuth API `2026-09` and Node.js 22+. Read `COMPATIBILITY.md` before choosing an account model or host, and use `MIGRATION.md` when updating older code. OAuth remains the default for reusable or multi-account apps; eligible single-account system integrations should evaluate Service Keys.
 
@@ -51,63 +46,22 @@ the distinction between project functions, workflow actions, and external hosts.
 
 ## Pick Your Path
 
-### I Am A Non-Developer
+| You want | Start here |
+| --- | --- |
+| A first result without coding experience | [One guided walkthrough](docs/start-here.md) |
+| A small feature to adapt with AI | The same walkthrough, then [recipes](recipes/README.md) |
+| Contracts and implementation details | [Architecture](docs/developer-architecture.md) and [contracts](docs/contracts/oauth-installation-contract.md) |
 
-Start with these files:
-
-- `START_WITH_AI.md`: paste this into your AI tool.
-- `docs/oauth-flow.md`: explains OAuth in plain language.
-- `docs/non-developer-safety-gates.md`: safety steps before real data.
-- `docs/security-for-non-developers.md`: what never to paste into chat.
-- `REAL_TOOL_CHECKLIST.md`: helps decide whether the service is ready for real use.
-
-Your safest path is understanding the flow first, then running the local example, then choosing hosting and storage.
-
-### I Am Vibe Coding
-
-Start with:
-
-- `recipes/multi-portal-oauth/`
-- `recipes/token-refresh/`
-- `recipes/hosting-adapters/`
-- `.github/prompts/choose-auth-and-hosting.prompt.md`
-- `.github/prompts/turn-mock-into-real-hubspot-api.prompt.md`
-
-Ask your AI tool to keep OAuth logic server-side and keep hosting adapters thin.
-
-### I Am A Developer
-
-Start with:
-
-- `docs/developer-architecture.md`
-- `docs/contracts/oauth-installation-contract.md`
-- `examples/minimal-oauth-service/`
-- `scripts/ai-readiness-check.js`
-- `scripts/smoke-example.js`
-
-The included example uses in-memory token storage for learning only. Real apps need durable protected storage and a complete revoke/uninstall path.
+[Choose your scope](docs/choose-your-path.md) before combining repositories. One
+starter may be enough; companions are optional, not an installation bundle.
 
 ## If You Are An AI Coding Tool
 
-Read these first, in order:
-
-1. `AGENTS.md`
-2. `START_WITH_AI.md`
-3. `docs/oauth-flow.md`
-4. `docs/non-developer-safety-gates.md`
-5. `docs/security-for-non-developers.md`
-6. `docs/contracts/oauth-installation-contract.md`
-7. The relevant `recipes/*/README.md`
-
-Rules:
-
-- Ask one question at a time for non-technical users.
-- Do not ask for secrets in chat.
-- Keep client secrets, access tokens, and refresh tokens server-side.
-- Validate OAuth `state` before exchanging codes.
-- Do not hard-code real portal IDs, app IDs, account IDs, private URLs, tokens, or customer data.
-- Explain hosting, token storage, scopes, revoke, and uninstall before real use.
-- Run `npm run check:ai` and `npm run smoke:example` after meaningful changes.
+[AGENTS.md](AGENTS.md) is the canonical operating guidance.
+[START_WITH_AI.md](START_WITH_AI.md) starts the conversation; README.md explains
+scope; [docs/start-here.md](docs/start-here.md) is the beginner path.
+Read the selected example, [catalog](examples/catalog.json) and [evidence](EVIDENCE.md)
+before claiming anything is implemented. Tool-specific adapters delegate to AGENTS.md.
 
 ## What This Repo Is
 
@@ -134,12 +88,29 @@ It includes:
 - `/oauth/start`
 - `/oauth/callback`
 - `/oauth/status`
+- `/oauth/refresh`
 - `/oauth/revoke`
 - signed OAuth `state`
 - placeholder environment variables
 - in-memory token storage for learning only
 
 Before real users, replace the in-memory store with durable protected storage and review scopes, logs, revocation, uninstall behavior, and hosting security.
+
+## Example Labels
+
+[examples/catalog.json](examples/catalog.json) lists every example and its limits.
+**Runnable locally** means the stated mock/offline check runs after its documented
+setup. **Illustrative** means a pattern or scaffold, not a complete runnable or
+deployable integration. **Developer-account verified** requires recorded installed
+evidence; none of these examples currently claims it. **Production prerequisites**
+are work to review, not a certification or an included production service.
+
+| Example | Status | What the local evidence covers |
+| --- | --- | --- |
+| [examples/minimal-oauth-service](examples/minimal-oauth-service/README.md) | Runnable locally | Offline mock by default; in-memory local teaching service, not a production broker. |
+
+Use [EVIDENCE.md](EVIDENCE.md) for the current verification record. Every example's
+README also states its status and points to the remaining live-use checklist.
 
 ## Security First
 
@@ -153,15 +124,12 @@ OAuth still needs careful security:
 - avoid logging secrets or full CRM records
 - support revoke or uninstall behavior
 
-## Real Service Workflow
+## From Demo To Your Feature
 
-1. Start with `START_WITH_AI.md`.
-2. Read `docs/oauth-flow.md`.
-3. Run the local example smoke check.
-4. Choose hosting using `docs/hosting-options.md`.
-5. Choose storage using the OAuth recipes and contract docs.
-6. Run `npm run check:ai` and `npm run smoke:example`.
-7. Review `REAL_TOOL_CHECKLIST.md` before real installs.
+Keep the [single guided path](docs/start-here.md): goal, mock, auth/hosting decision,
+one small build, verification. You may stop at mock-only learning. Before real use,
+finish [the checklist](REAL_TOOL_CHECKLIST.md) and obtain scoped approval; successful
+mock tests are not a deployment or permission to touch live data.
 
 ## Repo Map
 
@@ -180,6 +148,6 @@ OAuth still needs careful security:
 
 This starter is released under the MIT license in `LICENSE`. That makes it permissive for learning, copying, modifying, publishing, distributing, sublicensing, and building real projects, as long as the required copyright and license notices are preserved when substantial portions are reused.
 
-The starter is provided as-is, without warranty or liability. It is not legal advice, a security audit, a compliance review, HubSpot approval, marketplace approval, or a production guarantee.
+The MIT license includes the warranty disclaimers and liability limitations in [LICENSE](LICENSE). This starter is not legal advice, a security audit, a compliance review, HubSpot approval, marketplace approval, or a production guarantee. Builders are responsible for reviewing, configuring, testing, and operating their implementations.
 
 Before using generated code with real HubSpot data or real users, review `docs/implementation-responsibility.md`, `REAL_TOOL_CHECKLIST.md`, and `docs/non-developer-safety-gates.md`. Builders are responsible for checking their own HubSpot developer requirements, auth model, scopes, hosting setup, token storage, privacy obligations, platform terms, and production readiness.

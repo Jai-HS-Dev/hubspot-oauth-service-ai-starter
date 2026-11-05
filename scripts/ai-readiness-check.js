@@ -4,6 +4,9 @@ const path = require('node:path');
 const root = process.cwd();
 const requiredFiles = [
   'README.md',
+  'examples/catalog.json',
+  'docs/troubleshooting.md',
+  'EVIDENCE.md',
   'START_WITH_AI.md',
   'AGENTS.md',
   'SECURITY.md',

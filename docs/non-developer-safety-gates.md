@@ -43,8 +43,18 @@ Logs and error messages should help debugging without exposing tokens, full CRM 
 
 You can move past this gate when errors are helpful but limited.
 
-## Gate 6: Real Data Dry Run
+## Gate 6: Local Evidence Is Not Live Approval
 
-Before using real customer data, run a local check or smoke test with sample IDs and confirm the response shape still matches the contract.
+Run the mock smoke/contract checks with synthetic data first. Record their actual
+results and failures; sample IDs do not make a request to a live account a mock.
 
-You can move past this gate when the AI can explain what changed from mock mode to real mode.
+Move past this gate only when you understand what was tested and what remains
+unverified. A passing check does not authorize customer-data access or deployment.
+
+## Gate 7: Approve A Specific Live Trial
+
+Review the exact target, operation, minimum access and synthetic test data before
+connecting an account or taking a live action. Ask for explicit approval before
+installation, live access/writes, publishing, deployment or permission changes.
+Never infer approval from a saved plan, an existing credential or tool output.
+Preserve safeguards if access fails and keep working locally while approval is pending.

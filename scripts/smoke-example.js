@@ -13,6 +13,7 @@ main().catch((error) => {
 async function main() {
   process.env.PORT = port;
   process.env.USE_MOCK_DATA = 'true';
+  process.env.OAUTH_ADMIN_SECRET = 'synthetic-smoke-' + 'x'.repeat(32);
   const { startServer } = require(path.join(exampleDir, 'server.js'));
   const server = startServer(Number(port));
 
@@ -36,6 +37,19 @@ function getConfig(type) {
         const body = await response.json();
         assert(response.ok, 'root route should return 200');
         assert(Array.isArray(body.routes), 'root route should list routes');
+        const start = await fetch(`${baseUrl}/oauth/start`, { redirect: 'manual' });
+        const destination = new URL(start.headers.get('location'));
+        const callback = `${baseUrl}/oauth/callback?${destination.searchParams}`;
+        const cookie = start.headers.get('set-cookie').split(';')[0];
+        assert((await fetch(callback)).status === 400, 'callback must bind the browser');
+        assert((await fetch(callback, { headers: { cookie } })).ok, 'mock callback should install');
+        assert((await fetch(callback, { headers: { cookie } })).status === 400, 'state replay must fail');
+        assert((await fetch(`${baseUrl}/oauth/status?portalId=demo-portal`)).status === 401, 'status must require auth');
+        const headers = { authorization: `Bearer ${process.env.OAUTH_ADMIN_SECRET}`, 'content-type': 'application/json' };
+        for (const action of ['refresh', 'revoke']) {
+          const result = await fetch(`${baseUrl}/oauth/${action}`, { method: 'POST', headers, body: JSON.stringify({ portalId: 'demo-portal' }) });
+          assert(result.ok, `mock ${action} should succeed`);
+        }
       }
     };
   }

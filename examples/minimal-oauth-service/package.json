@@ -4,7 +4,7 @@
   "private": true,
   "description": "Hosting-neutral HubSpot OAuth service skeleton.",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --env-file=.env server.js",
     "check": "node --check server.js && node --check memory-token-store.js"
   },
   "engines": {

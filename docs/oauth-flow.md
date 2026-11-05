@@ -18,6 +18,8 @@ The `state` value helps protect against callback tampering.
 HubSpot redirects back to the app with an authorization code.
 
 The server validates `state` before exchanging the code.
+Bind state to the initiating browser/session, expire it, and consume it once before
+exchange. A signed timestamp by itself is not browser binding or replay protection.
 
 ## 3. Token Exchange
 
@@ -36,4 +38,7 @@ When an access token expires, the server uses the refresh token to request a new
 ## 6. Revoke Or Uninstall
 
 When access is removed, revoke tokens or delete installation records as appropriate for the app design.
+Authenticate management callers and authorize the exact account before reading,
+refreshing or revoking installations. A caller-supplied portal ID is not authority.
+Retain recoverable state when upstream revocation fails; do not report success.
 

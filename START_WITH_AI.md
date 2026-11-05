@@ -1,30 +1,26 @@
-﻿# Start With AI
+# Start With AI
 
-Paste this into Codex, Cursor, Claude Code, GitHub Copilot, Gemini CLI, Windsurf, or another AI coding tool:
+Open this repository in an AI coding tool that can read project files. Paste this
+prompt into its chat. Explanation depth changes for beginners and developers;
+the safety boundaries stay the same.
 
 ```text
-I am using this HubSpot starter repository to build something real.
+Help me use this guided starter, not build a production integration by default.
+Read AGENTS.md, README.md and docs/start-here.md first, then the selected contract,
+example README and EVIDENCE.md. Ask me one question at a time:
+"What feature needs access to a HubSpot account?"
 
-Read README.md, AGENTS.md, docs/start-here.md, docs/choose-your-path.md, and docs/security-for-non-developers.md before making changes.
+Start with the credential-free local walkthrough. Explain each command, expected
+result and safe recovery. Tell me what the demo does not prove. Help me make one
+small plan before code changes and keep mock mode available.
 
-Ask me one question at a time. Start with mock data unless I explicitly choose real HubSpot data. Do not ask me to paste secrets, access tokens, refresh tokens, client secrets, portal IDs, private URLs, or customer data into chat.
-
-Help me choose the safest path for my goal:
-- mock-only learning
-- HubSpot serverless functions
-- external serverless functions
-- OAuth-backed service
-- Service Key for an eligible single-account system integration
-- legacy private app migration only
-- help me choose
-
-Before editing code, summarize the plan in plain English. After editing, tell me what changed, what command to run, and what security step I should verify.
+Follow AGENTS.md for trust, secrets and approval boundaries. Do not request secrets
+or customer data in chat. Do not assume account access, install dependencies,
+publish, deploy or change live data merely because I shared a repository.
+Finish with what was tested, what is unfinished and the next decision.
 ```
 
-## Good First Answer From The AI
-
-The assistant should first ask what the user wants to build, then help choose auth and hosting. It should not start by requesting tokens or real CRM exports.
-
-## Safe Default
-
-Use mock data first. Move to real HubSpot data only after the user understands scopes, secret storage, server-side auth, and logging risk.
+[The walkthrough](docs/start-here.md) is the single beginner path.
+[AGENTS.md](AGENTS.md) holds the operating instructions; README.md explains scope.
+Client-specific files should point there, not maintain competing rule sets.
+No particular AI subscription, CLI or MCP connection is required for the mock demo.

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-11-04",
+  "examples": [
+    {
+      "path": "examples/minimal-oauth-service",
+      "status": "runnable-locally",
+      "localCheck": "smoke:example",
+      "note": "Offline mock by default; in-memory local teaching service, not a production broker.",
+      "liveAccountVerified": false,
+      "productionReady": false
+    }
+  ]
+}
