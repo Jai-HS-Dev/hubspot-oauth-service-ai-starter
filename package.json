@@ -5,6 +5,7 @@
     "scripts":  {
                     "test":  "node --test tests/*.test.js",
                     "example:guided": "node --test tests/worked-example.test.js",
+                    "build:example": "node --test tests/worked-example.test.js",
                     "check":  "node scripts/check-source.js",
                     "check:ai":  "node scripts/ai-readiness-check.js",
                     "smoke:example":  "node scripts/smoke-example.js",

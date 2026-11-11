@@ -8,7 +8,7 @@ You will customize display text without exposing tokens or weakening management 
 From the repository root:
 
 ```bash
-npm run example:guided
+npm run build:example
 ```
 
 Use `npm.cmd` on Windows. No packages, environment file or credentials are needed.

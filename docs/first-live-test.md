@@ -50,9 +50,13 @@ If any box is unchecked, stop here. Nothing is wrong; you are simply not ready.
 5. **Check the result.** Success is `{"connected":true,"mock":false}` in the
    browser. The page and terminal should not print the code or tokens. Do not
    share the browser's callback URL; it can contain an authorization code.
-6. **Disconnect.** With approval, use the revoke route as the example README
-   describes. Confirm the connection status before stopping the service with
-   Ctrl+C. Record the result below. A failed revoke is not a disconnect.
+6. **Check and disconnect.** In a second terminal in the same example folder,
+   run `npm run connection -- status` (use `npm.cmd` in PowerShell). Expect
+   `{"connected":true,"mock":false}`. With explicit approval to revoke this
+   test connection, run `npm run connection -- disconnect` and expect
+   `{"connected":false,"mock":false}`. The client reads your ignored `.env`,
+   calls only the loopback service, and does not print secrets. Confirm the
+   result before stopping the service with Ctrl+C. A failed revoke is not a disconnect.
    Remove a dedicated test credential only with the account owner's approval.
    Do not delete or rotate a shared credential as part of this exercise.
 

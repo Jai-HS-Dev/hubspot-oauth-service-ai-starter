@@ -42,6 +42,8 @@ Show the pretend connection and explain how the mock check verifies disconnect. 
 
 **A later decision:** Before any account access, check whether the feature needs OAuth at all. For an approved local test-account connection, use `docs/first-live-test.md`.
 
+**Build something:** [Build the connection check](docs/worked-example.md), then use the test-account guide only after approving the one-account OAuth trial.
+
 Report actual results separately from instructions or plans. See
 [what was tested](docs/EVIDENCE.md) for this starter's verification limits.
 

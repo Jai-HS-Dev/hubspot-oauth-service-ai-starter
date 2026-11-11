@@ -45,7 +45,7 @@ To see the pretend connection in a browser, follow the [interactive demo](exampl
 
 ## Make It Yours
 
-1. **Practice:** [Try the worked exercise](docs/worked-example.md). Change what the connection status reports, without showing credentials.
+1. **Build a connection status check:** Run `npm run build:example`, then [follow the exercise](docs/worked-example.md) to check connect and disconnect without printing credentials.
 2. **Verify in HubSpot when ready:** [Connect and disconnect one developer test account](docs/first-live-test.md). Keep the example on your own computer; it stores tokens only in memory and is not a hosted service.
 3. **Before real use:** Review the [live-use checklist](docs/REAL_TOOL_CHECKLIST.md). Approve the account, permissions, and action first. Never paste secrets into chat or commit them.
 
@@ -55,10 +55,14 @@ No specific AI editor or hosting provider is required. For account and authentic
 
 ## Tests And Help
 
+For production requirements, platform questions, or a complex build, see
+[where to get help](docs/SUPPORT.md#hubspot-questions-and-production-help).
+
 `npm test` checks the local lifecycle and failure cases without credentials or package installs. See [what was tested](docs/EVIDENCE.md), [troubleshooting](docs/troubleshooting.md), and the [plain-language glossary](docs/glossary.md). [Support](docs/SUPPORT.md) is best-effort. Use the [security policy](SECURITY.md) to report security issues without exposing private data.
 
 ## License And Responsibility
 
-[MIT License](LICENSE). This independent project is not endorsed by HubSpot.
+[MIT License](LICENSE). This project is independent: it is not affiliated
+with, endorsed by, or supported by HubSpot.
 The examples are not security-audited and are provided as is, without warranty. You are responsible for
 [validating, securing, and operating what you build](docs/implementation-responsibility.md).
