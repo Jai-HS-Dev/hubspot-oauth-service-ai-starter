@@ -14,6 +14,9 @@ CI or security setting changed. No app was uploaded, migrated or deployed.
   on your own computer. It has not been run end to end; see EVIDENCE.md.
 - A dev container definition is included for browser-based editors. It has not
   been verified in GitHub Codespaces.
+- Reference documents moved from the repository root into docs/: EVIDENCE, COMPATIBILITY, MIGRATION, UPGRADE_NOTES, ROADMAP, SUPPORT and REAL_TOOL_CHECKLIST.
+  Links, AI instructions, checks and tests were updated to the new locations. If you
+  keep your own links or scripts to the old locations, update them.
 
 ## v0.2.0 - Guided Starter Release
 

@@ -69,7 +69,7 @@ real credentials to make it pass.
 4. **Connect a free HubSpot developer test account, on your computer only:** the
    [first test with HubSpot](docs/first-live-test.md) checklist.
 5. **Before real customers or real data:** the
-   [live-use checklist](REAL_TOOL_CHECKLIST.md). That is a separate decision.
+   [live-use checklist](docs/REAL_TOOL_CHECKLIST.md). That is a separate decision.
 
 ## How This Fits With HubSpot's Own Tools
 
@@ -104,11 +104,11 @@ More: [security in plain English](docs/security-for-non-developers.md) and
 ## For Developers
 
 Run `npm run check:ai`, `npm run check`, `npm test` and `npm run smoke:example`;
-no packages are needed. [EVIDENCE.md](EVIDENCE.md) records what was and was not
-tested. Reference: [compatibility](COMPATIBILITY.md),
+no packages are needed. [docs/EVIDENCE.md](docs/EVIDENCE.md) records what was and was not
+tested. Reference: [compatibility](docs/COMPATIBILITY.md),
 [authentication](docs/auth-options.md), [hosting](docs/hosting-options.md),
-[idea recipes](recipes/README.md), [migration notes](MIGRATION.md) and
-[upgrade notes](UPGRADE_NOTES.md).
+[idea recipes](recipes/README.md), [migration notes](docs/MIGRATION.md) and
+[upgrade notes](docs/UPGRADE_NOTES.md).
 
 ## Disclaimer
 
@@ -126,5 +126,5 @@ tested. Reference: [compatibility](COMPATIBILITY.md),
 - **Not professional advice.** Nothing here is legal, security or compliance
   advice. HubSpot's platform changes, so check the current official documentation.
 
-Help is best-effort with no response-time promise: see [support](SUPPORT.md).
+Help is best-effort with no response-time promise: see [support](docs/SUPPORT.md).
 Report security problems privately through [SECURITY.md](SECURITY.md).

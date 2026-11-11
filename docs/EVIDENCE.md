@@ -59,7 +59,7 @@ stated in SUPPORT.md. MIT terms are in LICENSE, not a guarantee of legal immunit
 
 ## Example Label Contract
 
-[examples/catalog.json](examples/catalog.json) is the machine-readable index; each
+[examples/catalog.json](../examples/catalog.json) is the machine-readable index; each
 example README repeats its label next to the code.
 
 - **Runnable locally:** the named mock/offline check runs after documented setup.
@@ -72,4 +72,4 @@ example README repeats its label next to the code.
   production hosting, security certification or ongoing operation.
 
 The beginner finish line is the local demo plus a small plan. See
-[the walkthrough](docs/start-here.md) for success, recovery and what remains.
+[the walkthrough](start-here.md) for success, recovery and what remains.

@@ -91,7 +91,7 @@ Your feature is mock-only, already has working reviewed authorization, or uses a
 
 For real work, identify the minimum data, access and existing host/auth first.
 Preserve working choices unless a change is necessary. Use [auth choices](auth-options.md),
-[hosting choices](hosting-options.md) and [compatibility](../COMPATIBILITY.md).
+[hosting choices](hosting-options.md) and [compatibility](COMPATIBILITY.md).
 Provider options are alternatives, not ready-made adapters for every host.
 
 Before connecting, obtain explicit approval for the exact account,
@@ -105,7 +105,7 @@ a safe failure and an acceptance check. Have the AI explain its changes before
 a small, approved local edit. Keep mock mode available.
 Use the selected example README rather than treating every recipe as implemented code.
 
-Check [example labels](../examples/catalog.json) and [evidence](../EVIDENCE.md).
+Check [example labels](../examples/catalog.json) and [evidence](EVIDENCE.md).
 Do not upload an illustrative folder or deploy an in-memory teaching service just
 because it contains configuration files.
 
@@ -132,7 +132,7 @@ Report failures and skipped tests honestly; a skip is not passed coverage.
 - You understand that installed-account and production behavior remain unverified.
 
 A real implementation still needs: Authenticated installation/management sessions, durable encrypted tenant storage, refresh locking, uninstall/recovery handling, hosting and approved live verification.
-Review [the live-use checklist](../REAL_TOOL_CHECKLIST.md) and
+Review [the live-use checklist](REAL_TOOL_CHECKLIST.md) and
 [implementation responsibility](implementation-responsibility.md) before real use.
 
 Report **generated**, **locally tested**, **developer-account verified** and

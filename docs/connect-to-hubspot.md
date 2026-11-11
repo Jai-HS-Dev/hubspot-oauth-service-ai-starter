@@ -104,7 +104,7 @@ sanitized test note; never commit credentials or customer details.
 
 ## 6. Decide What Comes Next
 
-Review [the real-use checklist](../REAL_TOOL_CHECKLIST.md) and
+Review [the real-use checklist](REAL_TOOL_CHECKLIST.md) and
 [implementation responsibility](implementation-responsibility.md).
 Production needs a separate decision, security/permission review and operation
 plan. A developer-account test does not verify production readiness.

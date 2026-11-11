@@ -56,7 +56,7 @@ If any box is unchecked, stop here. Nothing is wrong; you are simply not ready.
 ## Record The Result
 
 Keep the full note private. Add only a short, cleaned-up summary to
-[EVIDENCE.md](../EVIDENCE.md).
+[EVIDENCE.md](EVIDENCE.md).
 
 ```text
 Date:
@@ -86,5 +86,5 @@ the pretend connection with `USE_MOCK_DATA=true`.
 Connecting one test account on your own computer is a learning milestone. The
 example keeps tokens in memory and loses them on restart, so it is not a service
 you can host. It is not a security review and not approval for real customers.
-Before real use, go through the [live-use checklist](../REAL_TOOL_CHECKLIST.md)
+Before real use, go through the [live-use checklist](REAL_TOOL_CHECKLIST.md)
 and [implementation responsibility](implementation-responsibility.md).

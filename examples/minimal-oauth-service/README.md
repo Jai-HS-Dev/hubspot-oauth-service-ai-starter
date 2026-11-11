@@ -3,7 +3,7 @@
 **Example status:** Runnable locally.
 **Local check:** `npm run smoke:example` from the repository root, after the documented setup.
 **Developer-account verification:** Not verified.
-**Production prerequisites:** Review [the checklist](../../REAL_TOOL_CHECKLIST.md) and [evidence](../../EVIDENCE.md); no production implementation is included.
+**Production prerequisites:** Review [the checklist](../../docs/REAL_TOOL_CHECKLIST.md) and [evidence](../../docs/EVIDENCE.md); no production implementation is included.
 
 Offline mock by default; in-memory local teaching service, not a production broker.
 
@@ -77,7 +77,7 @@ rate limits and safe audit logs. Configure HTTPS and Secure cookies on the actua
 host. The loopback-only cookie here is intentionally not a production cookie.
 The old memory-token-store.js is retained as a reference, but server.js uses its
 own isolated store per server instance. Do not deploy this file by merely changing
-NODE_ENV or the listener address. See ../../EVIDENCE.md and the real-tool checklist.
+NODE_ENV or the listener address. See ../../docs/EVIDENCE.md and the real-tool checklist.
 
 [Official OAuth guide](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/oauth/working-with-oauth)
 
