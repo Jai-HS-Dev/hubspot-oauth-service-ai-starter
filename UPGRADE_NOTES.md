@@ -1,5 +1,20 @@
 # Local Upgrade Notes
 
+## Unreleased - Easier README And Assistant Hard Rules
+
+Prepared 2026-11-10. Documentation and learning aids only; no example behavior,
+CI or security setting changed. No app was uploaded, migrated or deployed.
+
+- README rewritten for three audiences: one status banner, a path table, a short
+  quick start, numbered next steps and a single disclaimer section.
+- AGENTS.md starts with a short Never / Ask first / Always block, and says when
+  HubSpot's official developer tools may be used.
+- README leads with the existing browser demo of the pretend connection.
+- docs/first-live-test.md is a checklist for connecting one developer test account
+  on your own computer. It has not been run end to end; see EVIDENCE.md.
+- A dev container definition is included for browser-based editors. It has not
+  been verified in GitHub Codespaces.
+
 ## v0.2.0 - Guided Starter Release
 
 This release adds a single beginner walkthrough, example/evidence labels, aligned

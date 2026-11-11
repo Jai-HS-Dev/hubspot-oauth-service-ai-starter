@@ -1,156 +1,130 @@
 # HubSpot OAuth Service AI Starter
 
-Learn how a HubSpot app asks permission to access an account, without exposing its credentials.
+OAuth is the screen where someone allows an app to use their HubSpot account.
+This starter teaches the steps behind that screen: connect, keep the connection
+fresh, and disconnect. You start with a pretend connection on your own computer,
+with an AI assistant that follows written safety rules.
 
-**A practical blueprint for building and testing your own HubSpot integration,
-not a finished production app.**
-Start with made-up data, then connect a suitable HubSpot account to test your real
-feature. No coding experience is assumed; the guide helps you choose each next step.
+> [!WARNING]
+> **This is a learning starter, not finished software.** It is not
+> security-audited, not made or endorsed by HubSpot, and has no warranty or
+> support promise. It keeps everything in memory and must not be put online as
+> it is. Practice with the pretend connection or a free HubSpot developer test
+> account. You are responsible for what you build. See the [disclaimer](#disclaimer).
 
-## What This Helps You Build
+## What You Get
 
-Possible projects include an app connection flow, connection-status checks, or token renewal and disconnection. These are goals to adapt, not a hosted authentication service.
+- A small working example of the whole connect, refresh and disconnect cycle,
+  using a pretend HubSpot account.
+- Rules for your AI assistant ([AGENTS.md](AGENTS.md)): what it must never do, and
+  when it must ask you first.
+- A path from practice, to a test account, to a checklist before anything real.
 
-**Your first result:** Run an offline simulation of connecting, checking, refreshing and revoking access, then plan the authorization your feature needs. No real account is connected.
+Do you need this starter at all? Only if other accounts will install your app.
+For a tool used in one account, a simpler sign-in option is often enough: see
+[which starter you need](docs/choose-your-path.md).
 
-## Choose Your Starting Point
+## Pick Your Path
 
-### I'm New To Coding
+| You are | Start here | You will have |
+| --- | --- | --- |
+| New to coding | [Step-by-step walkthrough](docs/start-here.md) | The pretend connection working on your computer and a plan for what your feature needs |
+| Building with an AI assistant | [The first prompt to paste](START_WITH_AI.md) | An assistant that explains each step and asks before risky ones |
+| A developer | [The flow](docs/oauth-flow.md), [installation contract](docs/contracts/oauth-installation-contract.md), [example](examples/minimal-oauth-service/README.md) | The route map, state and token handling, and tests |
 
-Follow [the step-by-step walkthrough](docs/start-here.md). It explains how to
-open the project, where to type commands, what success looks like and how to stop.
-Your assistant should ask one plain-language question at a time.
+A word you do not know? See the [glossary](docs/glossary.md).
 
-### I'm Building With AI
+## Try It
 
-Open this repository in your coding assistant and use the prompt below. Start
-with the same mock example before adapting a [feature recipe](recipes/README.md).
+You need [Node.js](https://nodejs.org/en/download) 22 or newer and a terminal.
+You do **not** need a HubSpot account, a password or key, or any package install.
 
-### I'm A Developer
+1. On GitHub choose **Code > Download ZIP**, extract it, and open a terminal in
+   the folder that contains `README.md`.
+2. Run these two commands (in Windows PowerShell type `npm.cmd` instead of `npm`):
 
-Jump to [architecture](docs/developer-architecture.md), the
-[data contract](docs/contracts/oauth-installation-contract.md) and the example README.
-The same safety and verification limits apply.
+   ```bash
+   npm run doctor
+   npm run smoke:example
+   ```
 
-## Start With Your AI Assistant
+3. You are done when the last line says `oauth smoke example passed.`
+4. Optional, to see it in your browser: run `node examples/minimal-oauth-service/server.js`,
+   open `http://127.0.0.1:3000/oauth/start`, and you should see
+   `{"connected":true,"mock":true}`. Press Ctrl+C in the terminal to stop it.
 
-Paste this into an assistant that can read the repository files:
+**What just happened:** a small program on your computer walked through a pretend
+connection to a pretend account, then stopped itself. Nothing was sent to
+HubSpot and no real account was connected. If a command fails, stop and read
+[troubleshooting](docs/troubleshooting.md). Never switch off a check or type in
+real credentials to make it pass.
 
-```text
-Read README.md, AGENTS.md and START_WITH_AI.md.
-Help me build authorization for a HubSpot feature that [describe your goal].
-Start with the mock example. Ask one question at a time.
-Explain each command and its expected result before I run it.
-Never ask me to paste secrets or customer data.
-When I am ready for a HubSpot test, use docs/connect-to-hubspot.md.
-Help me choose an account, authentication and hosting without assuming I need OAuth.
-Ask for explicit approval before packages, account access, live writes or deployment.
+## What To Do Next
+
+1. **Change one small thing:** the [worked exercise](docs/worked-example.md).
+2. **Understand the steps:** [the OAuth flow](docs/oauth-flow.md) in plain language.
+3. **Understand accounts and sign-in choices:** the
+   [connection guide](docs/connect-to-hubspot.md). Your assistant must ask you
+   before it connects anything.
+4. **Connect a free HubSpot developer test account, on your computer only:** the
+   [first test with HubSpot](docs/first-live-test.md) checklist.
+5. **Before real customers or real data:** the
+   [live-use checklist](REAL_TOOL_CHECKLIST.md). That is a separate decision.
+
+## How This Fits With HubSpot's Own Tools
+
+HubSpot's official material creates and explains real apps: see the
+[Build with AI quickstart](https://developers.hubspot.com/docs/build-with-ai/quickstart),
+the [OAuth guide](https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/oauth/working-with-oauth)
+and the official [OAuth quickstart sample](https://github.com/HubSpot/oauth-quickstart-nodejs).
+This starter covers what comes before and around them: practice with a pretend
+account, rules for your AI assistant, and a checklist before going live. It does
+not replace the official tools or documentation.
+
+```mermaid
+flowchart LR
+  A["Person clicks Connect"] --> B["Your service<br/>creates a one-time check value"]
+  B --> C{"Mock mode?"}
+  C -->|"yes (default)"| D["Pretend approval<br/>HubSpot is not contacted"]
+  C -->|"no, only after you approve"| E["HubSpot permission screen<br/>test account first"]
+  D --> F["Tokens stay on the server<br/>never shown in the browser"]
+  E --> F
 ```
 
-[START_WITH_AI.md](START_WITH_AI.md) has the fuller first-conversation prompt.
-[AGENTS.md](AGENTS.md) holds the canonical coding instructions; tool-specific files
-point there. You can use different AI editors; automatic instruction loading varies.
-No MCP connection is needed for the local example.
+## Safety Rules In Short
 
-## Try The Safe Example
+1. Keep passwords, keys, tokens and customer data out of AI chats, GitHub,
+   screenshots and logs. Tokens belong on the server side, never in a browser.
+2. Start with the pretend connection. Approve the exact account, permissions and
+   action before anything touches a real HubSpot account.
 
-A **mock** uses made-up data. You need Node.js and npm; the examples declare
-Node.js 22+, and the [walkthrough](docs/start-here.md) records the tested version
-and setup guidance. This describes local examples, not managed HubSpot runtimes.
+More: [security in plain English](docs/security-for-non-developers.md) and
+[the approval steps](docs/non-developer-safety-gates.md).
 
-Download and extract the repository, then open a terminal in the folder containing
-`README.md` and `package.json`. Run:
+## For Developers
 
-```bash
-npm run doctor
-npm run smoke:example
-```
+Run `npm run check:ai`, `npm run check`, `npm test` and `npm run smoke:example`;
+no packages are needed. [EVIDENCE.md](EVIDENCE.md) records what was and was not
+tested. Reference: [compatibility](COMPATIBILITY.md),
+[authentication](docs/auth-options.md), [hosting](docs/hosting-options.md),
+[idea recipes](recipes/README.md), [migration notes](MIGRATION.md) and
+[upgrade notes](UPGRADE_NOTES.md).
 
-On Windows PowerShell, use:
+## Disclaimer
 
-```powershell
-npm.cmd run doctor
-npm.cmd run smoke:example
-```
+- **No warranty.** Provided "as is" under the [MIT License](LICENSE), which
+  disclaims warranties and limits the authors' liability. Keep the copyright
+  and license notice when you reuse the code.
+- **A starter, not a product.** The examples are not production-ready, not
+  security-audited, and not verified in a live HubSpot account. A passing test
+  here does not prove that what you build is secure.
+- **You are responsible for what you build:** testing, security, privacy, legal
+  compliance, costs and your customers' data. See
+  [implementation responsibility](docs/implementation-responsibility.md).
+- **Independent project.** Not affiliated with, endorsed by or supported by
+  HubSpot. HubSpot is a trademark of HubSpot, Inc.
+- **Not professional advice.** Nothing here is legal, security or compliance
+  advice. HubSpot's platform changes, so check the current official documentation.
 
-No `npm install`, credentials, HubSpot account or hosting is needed for this first
-check. The doctor should report `"ok": true`; the example should end with:
-
-```text
-oauth smoke example passed.
-```
-
-The offline OAuth simulation passed, including browser binding and rejection of a reused callback. No real login or account connection took place.
-The check closes its local server automatically.
-
-If a command fails, stop and use [troubleshooting](docs/troubleshooting.md).
-Do not weaken security settings or enter live credentials to make it pass.
-
-## Connect To HubSpot When You're Ready
-
-The mock needs no account connection. Installing a card/tool or working with real
-HubSpot data does need a suitable account, permissions and authentication.
-Use [the connection guide](docs/connect-to-hubspot.md) to choose or create a
-separate developer test account, check feature availability, and plan OAuth or
-another supported option. Your assistant should explain the choices and ask
-approval before setup or connection. Test first; production is a separate decision.
-
-## What Is Included And What Isn't
-
-| Example | Status and limits |
-| --- | --- |
-| [Minimal OAuth service](examples/minimal-oauth-service/README.md) | Runnable locally: offline start/callback/status/refresh/revoke simulation with browser-bound, one-use state. |
-
-The teaching service stores data in memory and refuses production mode. A real service still needs protected durable token storage, account/user authorization, refresh coordination, hosting and developer-account tests. Do not remove the production guard to deploy the demo.
-
-[Evidence](EVIDENCE.md) and the [example catalog](examples/catalog.json) distinguish
-local tests, illustrative code and remaining work. No example currently claims
-developer-account verification or production readiness.
-
-After the demo, follow one path: **describe your goal, run the mock, choose
-authentication/hosting only if needed, make one small change, verify**.
-Use the [blueprint](docs/oauth-flow.md) to plan that change.
-
-[Authentication choices](docs/auth-options.md) and
-[hosting choices](docs/hosting-options.md) explain alternatives, not ready-made
-adapters for every provider. [Check which starter you need](docs/choose-your-path.md);
-companion repositories are optional.
-
-## Safety Essentials
-
-1. Keep secrets and customer data out of AI chats, GitHub, screenshots and logs.
-   Keep credentials server-side, never in browser/card code.
-2. Use mock data first. Approve the exact account, minimum access and operation
-   before live access, writes, publishing or deployment.
-3. Passing local tests is not proof of security or production readiness.
-   Review the [live-use checklist](REAL_TOOL_CHECKLIST.md) before real use.
-
-Read [plain-English security guidance](docs/security-for-non-developers.md) and
-[the approval gates](docs/non-developer-safety-gates.md) for the full process.
-
-## Developer Reference
-
-For a small next step, try [the worked exercise](docs/worked-example.md).
-New terms are explained in [the glossary](docs/glossary.md).
-
-- [Architecture](docs/developer-architecture.md) and [contract](docs/contracts/oauth-installation-contract.md).
-- [Compatibility and reviewed versions](COMPATIBILITY.md), [migration guidance](MIGRATION.md) and [upgrade notes](UPGRADE_NOTES.md).
-- [Optional feature recipes](docs/fall-2026-feature-recipes.md) and [verification evidence](EVIDENCE.md).
-
-After the selected example's documented setup, run `npm run check:ai`,
-`npm run check`, `npm test` and `npm run smoke:example` (use `npm.cmd` on Windows).
-Report skipped or failed checks; mock checks do not verify a live installation.
-
-## Help And License
-
-See [troubleshooting](docs/troubleshooting.md) and [support expectations](SUPPORT.md).
-Support is best-effort; report vulnerabilities through [SECURITY.md](SECURITY.md),
-without posting credentials or customer data.
-
-Licensed under [MIT](LICENSE); preserve the required copyright and license notices
-when reusing the code. The license contains warranty disclaimers and liability
-limitations. Builders remain responsible for implementation, testing, security,
-privacy and operation; see [implementation responsibility](docs/implementation-responsibility.md).
-
-This is an independent community starter, not affiliated with or endorsed by
-HubSpot, and not a security audit, legal advice or production guarantee.
+Help is best-effort with no response-time promise: see [support](SUPPORT.md).
+Report security problems privately through [SECURITY.md](SECURITY.md).
