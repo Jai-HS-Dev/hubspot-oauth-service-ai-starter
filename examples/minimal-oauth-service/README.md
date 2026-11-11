@@ -54,12 +54,16 @@ No CORS access is enabled. Return URLs and caller-supplied hosts are not trusted
 
 Only after explicit approval for your developer app/account:
 
-1. Keep this service on loopback. Use its exact registered callback URL.
+1. Keep this service on loopback. In HubSpot, register
+   `http://localhost:3000/oauth/callback` and set `HUBSPOT_REDIRECT_URI` to
+   the same URL. The IP-address URL above is only for the offline mock.
 2. Copy .env.example to ignored .env. Set USE_MOCK_DATA=false, your developer
    client ID/secret, HUBSPOT_PORTAL_ID and minimal HUBSPOT_SCOPES.
 3. Generate separate OAUTH_STATE_SECRET and OAUTH_ADMIN_SECRET (32+ characters).
    Neither may reuse the app client secret. Keep all values out of chat/Git/logs.
-4. Run `npm.cmd start` in this directory and authorize through your browser.
+4. Run `npm.cmd start` in this directory and open
+   `http://localhost:3000/oauth/start` in your browser. Use the same browser
+   and hostname for the whole flow. Do not share the callback URL.
 5. Use your approved server-side client for status/refresh/revoke; verify the
    intended account. A token response for a different account is refused.
 
