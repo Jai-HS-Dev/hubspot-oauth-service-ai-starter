@@ -7,7 +7,7 @@ Learn how an app asks for permission to use a HubSpot account, keeps the connect
 > a HubSpot account or credentials. To test inside HubSpot, use a developer
 > test account with made-up records.
 
-**Sample result:** The browser shows `{"connected":true,"mock":true}`. That means the pretend connection worked; no HubSpot account was connected.
+**Sample result:** The mock exercise checks connection status before and after disconnect. No HubSpot account is connected and no credentials are printed.
 
 ## Pick Your Path
 
@@ -21,8 +21,9 @@ Copy this into your AI chat. Add your goal in plain English if you already have 
 
 ```text
 Help me use this HubSpot learning starter: https://github.com/Jai-HS-Dev/hubspot-oauth-service-ai-starter
-Read START_WITH_AI.md and AGENTS.md. If you can't open them, tell me how to share the public starter files.
-Ask what I want to do, then guide me through one local example with made-up data.
+Read START_WITH_AI.md and AGENTS.md from the same version as my copy.
+If you can't open them, ask for those public files. Ask what I want to build,
+then guide me through the first local example with made-up data.
 Don't ask for secrets, connect an account, or deploy anything. This is a prototype, not a production integration.
 ```
 
@@ -30,16 +31,18 @@ Don't ask for secrets, connect an account, or deploy anything. This is a prototy
 
 Install [Node.js 22 or newer](https://nodejs.org/en/download) if you don't have it.
 On GitHub, choose **Code > Download ZIP**, extract it, and open a terminal in
-the folder with this README. No project packages need to be installed for this step.
+the folder with this README. For a versioned copy, use a learning-starter ZIP
+from [Releases](https://github.com/Jai-HS-Dev/hubspot-oauth-service-ai-starter/releases) and share its matching AI prompt.
+No project packages need to be installed for this step.
 
 ```bash
 npm run doctor
-npm run smoke:example
+npm run build:example
 ```
 
 In Windows PowerShell, use `npm.cmd` instead of `npm`.
 
-**Success looks like:** `oauth smoke example passed.`
+**Success looks like:** `worked connection status becomes disconnected only after mock revoke succeeds` passes.
 
 To see the pretend connection in a browser, follow the [interactive demo](examples/minimal-oauth-service/README.md#first-working-run).
 

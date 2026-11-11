@@ -2,20 +2,18 @@
 
 ## What You Will Finish
 
-Run an offline install, callback, refresh and revoke simulation, and write a plan for the authorization your feature actually needs.
+Run the mock connection and disconnect check, then customize one display message without weakening authorization.
 
-This finishes a **local learning result and a next-step plan**, not a production
-integration. An offline OAuth lifecycle passes, including browser binding and replay rejection. No real account is connected. No HubSpot account, credentials, hosting or package
-installation is needed for this first result.
-
-A mock uses made-up data. A backend runs server-side. A smoke check is a short
-automated test that something basic works.
+The command uses a loopback test server with made-up credentials, then closes it. No HubSpot account is connected.
+No HubSpot account, credentials, hosting, or package installation is needed.
+This is a local learning result, not a production integration.
 
 ## 1. Open The Project And Describe Your Goal
 
 If your editor already has the repository open, keep using that folder. For a
 published copy on GitHub, use **Code > Download ZIP**, extract it, then open the
-extracted folder as a project. No Git installation is required for this route.
+extracted folder as a project. No Git installation is required. If you use a
+release ZIP, give your AI the prompt link from the same release.
 [GitHub download instructions](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives).
 
 The repository root contains README.md and package.json. It is not the ZIP, its
@@ -42,42 +40,29 @@ guidance. Use a supported Node.js 24 release from the [official downloads](https
 to reproduce this path, then reopen the terminal. Do not run random install scripts
 or weaken execution policy.
 
-## 2. Run The Mock Example
+## 2. Run The First Build-Along
 
-From the repository root, check prerequisites, then run the short example:
+From the repository root, check prerequisites and run the example:
 
 ```bash
 npm run doctor
-npm run smoke:example
+npm run build:example
 ```
 
-Windows PowerShell equivalent:
-
-```powershell
-npm.cmd run doctor
-npm.cmd run smoke:example
-```
-
-Do not run npm install, create an app or enter credentials to make this step work.
-The smoke script starts a local server, sends its sample requests and closes the server automatically.
+In Windows PowerShell, use `npm.cmd` instead of `npm`.
+Do not install project packages, create an app, or enter credentials for this step.
 
 ### Recognize Success
 
-The doctor reports `"ok": true`.
-The example ends with:
+**Success looks like:** `worked connection status becomes disconnected only after mock revoke succeeds` passes.
+Other output and timings may differ. Wait for the terminal prompt to return.
+If you need to stop a running example, press **Ctrl+C** in that terminal only.
+If the command fails, use [troubleshooting](troubleshooting.md) without disabling
+security checks or granting more access.
 
-```text
-oauth smoke example passed.
-```
-
-Other lines, timings and ports may differ. The terminal prompt returns when the
-short check finishes. The smoke check leaves no server running.
-If you separately start a long-running example, press **Ctrl+C in that example's
-terminal** to stop it; do not stop unrelated programs.
-
-You may stop here: the first local result is complete. An offline OAuth lifecycle passes, including browser binding and replay rejection. No real account is connected.
-If it fails, use [troubleshooting](troubleshooting.md). Never disable authentication,
-grant extra scopes or enter production credentials just to make a check pass.
+Follow [the build-along](worked-example.md) to make one small change and check it again.
+Before changing anything, answer: What actually needs account access, and how will the user tell whether the app is connected or disconnected?
+You can stop after this local result. No account changes have been made.
 
 ## 3. Choose Authentication And Hosting Only If Needed
 
