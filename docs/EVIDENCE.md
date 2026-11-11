@@ -1,5 +1,16 @@
 # Evidence And Support
 
+## README Update Verification
+
+Checked 2026-11-10 on Linux with Node.js 22.23.4 and 24.22.2, in an automated run by an AI
+coding assistant. This is not an independent beginner test.
+
+- `npm run check:ai`, `npm run check`, `npm run doctor`, `npm run smoke:example` and `npm test` passed; the browser demo returned the documented pretend-connection result.
+- Every relative link in the Markdown files was checked to resolve to a file.
+- Not established: how the README renders on GitHub, the dev container in
+  GitHub Codespaces and every step of docs/first-live-test.md. No HubSpot account was
+  connected and nothing was uploaded.
+
 ## Starter Follow-Through Verification
 
 Checked 2026-11-05 on Windows with Node.js 24.22.1:
@@ -48,7 +59,7 @@ stated in SUPPORT.md. MIT terms are in LICENSE, not a guarantee of legal immunit
 
 ## Example Label Contract
 
-[examples/catalog.json](examples/catalog.json) is the machine-readable index; each
+[examples/catalog.json](../examples/catalog.json) is the machine-readable index; each
 example README repeats its label next to the code.
 
 - **Runnable locally:** the named mock/offline check runs after documented setup.
@@ -61,4 +72,4 @@ example README repeats its label next to the code.
   production hosting, security certification or ongoing operation.
 
 The beginner finish line is the local demo plus a small plan. See
-[the walkthrough](docs/start-here.md) for success, recovery and what remains.
+[the walkthrough](start-here.md) for success, recovery and what remains.

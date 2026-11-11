@@ -4,6 +4,7 @@ const { once } = require('node:events');
 const { randomBytes } = require('node:crypto');
 const { createServer } = require('../examples/minimal-oauth-service/server');
 const { connectionMessage } = require('../examples/minimal-oauth-service/connection-message');
+const { manageLocal } = require('../examples/minimal-oauth-service/manage-local.cjs');
 
 test('worked connection status becomes disconnected only after mock revoke succeeds', async t => {
   const admin = randomBytes(32).toString('hex');
@@ -12,6 +13,7 @@ test('worked connection status becomes disconnected only after mock revoke succe
   await once(server, 'listening');
   t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
   const base = 'http://127.0.0.1:' + server.address().port;
+  const settings = { USE_MOCK_DATA: 'true', OAUTH_ADMIN_SECRET: admin, PORT: String(server.address().port) };
   const headers = { authorization: 'Bearer ' + admin, 'content-type': 'application/json' };
   const status = async () => (await fetch(base + '/oauth/status?portalId=demo-portal', { headers })).json();
   assert.equal(connectionMessage(await status()), 'Not connected.');
@@ -21,7 +23,11 @@ test('worked connection status becomes disconnected only after mock revoke succe
   const cookie = start.headers.get('set-cookie').split(';')[0];
   assert.equal((await fetch(base + '/oauth/callback?' + callback.searchParams, { headers: { cookie } })).status, 200);
   assert.equal(connectionMessage(await status()), 'Connected (local demo).');
-  assert.equal((await fetch(base + '/oauth/revoke', { method: 'POST', headers, body: JSON.stringify({ portalId: 'demo-portal' }) })).status, 200);
+  assert.deepEqual(await manageLocal('status', settings), { connected: true, mock: true });
+  await assert.rejects(manageLocal('disconnect', { ...settings, OAUTH_ADMIN_SECRET: 'x'.repeat(32) }), /401/);
+  assert.deepEqual(await manageLocal('status', settings), { connected: true, mock: true });
+  assert.deepEqual(await manageLocal('disconnect', settings), { connected: false, mock: true });
+  await assert.rejects(manageLocal('disconnect', settings), /revocation was not verified/);
   assert.equal(connectionMessage(await status()), 'Not connected.');
   assert.throws(() => connectionMessage({}), /status is required/);
 });

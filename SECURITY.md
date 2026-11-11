@@ -20,5 +20,5 @@ and a minimal synthetic reproduction privately. Never submit real credentials.
 
 Local mock tests do not verify authorization in an installed HubSpot account.
 No supported-version SLA, comprehensive history scan or absence-of-vulnerabilities
-guarantee is claimed. See [support](SUPPORT.md) and [evidence](EVIDENCE.md).
+guarantee is claimed. See [support](docs/SUPPORT.md) and [evidence](docs/EVIDENCE.md).
 

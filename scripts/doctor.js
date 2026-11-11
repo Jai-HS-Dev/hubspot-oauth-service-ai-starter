@@ -10,7 +10,7 @@ if (major < 22) {
   failures.push(`Node.js 22 or newer is required; found ${process.versions.node}.`);
 }
 
-for (const file of ['README.md', 'AGENTS.md', 'COMPATIBILITY.md', 'MIGRATION.md', '.env.example']) {
+for (const file of ['README.md', 'AGENTS.md', 'docs/COMPATIBILITY.md', 'docs/MIGRATION.md', '.env.example']) {
   if (!fs.existsSync(path.join(root, file))) failures.push(`Missing ${file}.`);
 }
 

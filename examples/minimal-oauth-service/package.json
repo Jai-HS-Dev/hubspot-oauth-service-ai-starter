@@ -5,6 +5,7 @@
   "description": "Hosting-neutral HubSpot OAuth service skeleton.",
   "scripts": {
     "start": "node --env-file=.env server.js",
+    "connection": "node --env-file=.env manage-local.cjs",
     "check": "node --check server.js && node --check memory-token-store.js"
   },
   "engines": {
